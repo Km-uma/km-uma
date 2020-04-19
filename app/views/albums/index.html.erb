@@ -1,0 +1,79 @@
+<p id="notice"><%= notice %></p>
+<% var = current_user.admin %>
+<% if var == true %>
+<h1><strong>All Record</strong>
+    </div>
+    <table class="table table-striped text-center">
+        <thead class="h6">
+            <tr>
+                <th>User</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Tags </th>
+                <th>Created On </th>
+                <th>Updated On </th>
+                <th>Show Album</th>
+                <th>Edit Album</th>
+                <th>Destroy Album</th>
+                <!--  <th colspan="3"></th> -->
+            </tr>
+        </thead>
+
+        <tbody>
+            <% @albums.each do |album| %>
+            <tr>
+                <td class="h6"><%= album.user.email %></td>
+                <td class="h6"><%= album.title %></td>
+                <td class="h6"><%= album.discription %></td>
+                <td class="h6"><%= album.tag_list %></td>
+                <td class="h6"><%= album.created_at.to_s.split(' ')[0] %></td>
+                <td class="h6"> <%= album.updated_at.to_s.split(' ')[0] %></td>
+                <td class="h6"><%= link_to 'Show', album %></td>
+                <td class="h6"><%= link_to 'Edit', edit_album_path(album) %></td>
+                <td class="h6"><%= link_to 'Destroy', album, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+            </tr>
+            <% end %>
+        </tbody>
+    </table>
+
+    <%= paginate @albums%>
+
+    <br>
+    <%else %>
+    <div class="row-fluid">
+
+        <h1><strong>Albums</strong>|
+            <%= link_to 'Upload New Album', new_album_path %></h1>
+    </div>
+    <table class="table table-striped text-center">
+        <thead class="h4">
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Show Album</th>
+                <th>Edit Album</th>
+                <th>Destroy Album</th>
+                <!--  <th colspan="3"></th> -->
+            </tr>
+        </thead>
+
+        <tbody>
+            <% @albums.each do |album| %>
+            <tr>
+                <td class="h6"><%= album.title %></td>
+                <td class="h6"><%= album.discription %></td>
+                <td class="h6"><%= link_to 'Show', album %></td>
+                <td class="h6"><%= link_to 'Edit', edit_album_path(album) %></td>
+                <td class="h6"><%= link_to 'Destroy', album, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+            </tr>
+            <% end %>
+        </tbody>
+    </table>
+
+    <%= paginate @albums%>
+
+    <br>
+
+    <% end%>

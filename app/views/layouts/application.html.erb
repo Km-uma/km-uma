@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Gallery</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+
+<body>
+    <% if user_signed_in? %>
+    <div class="container-fluid" style="padding-top:20px">
+        <div class="row">
+            <div class="col">
+                <h2>Wellcome,</h2>
+                <h5><%= current_user.email.split('@')[0] %></h5>
+            </div>
+            <div class="col text-right">
+                <h2> <%= link_to "SignOut", destroy_user_session_path, :method => 'delete' %></h2>
+            </div>
+        </div>
+    </div>
+    <div class="container shadow p-3 mb-5 bg-white rounded">
+        <h1 class="display-2 text-center text-danger">Gallery<h1>
+    </div>
+    <br>
+    <% end %>
+
+    <%= yield %>
+    <!--<%= render "layouts/fotter" %> -->
+</body>
+
+</html>

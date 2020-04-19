@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p class="h3 p-3">
+    <strong>Title:</strong>
+    <%= @album.title %>
+</p>
+<div class="row-flex">
+<p  class="h5 text-right">Date :<%= @album.created_at.to_s.split(' ')[0] %> ||
+Tags: <%= raw @album.tag_list.map {|t| link_to t, tagged_path(t) }.join(', ')  %> </p>
+
+</div>
+<div class="text-center card-group ">
+    <% (0...@album.images.count).each do |image| %>
+    <div class="card">
+        <div class="card-body">
+            <img class="image-fluid rounded img-thumbnail" <%= image_tag(@album.images[image]) %> </div>
+            <div class="">
+                <%= link_to 'Remove', delete_upload_album_url(@album.images[image]), method: :delete, data: { confirm: 'Are you sure?' } %>
+            </div>
+        </div>
+
+        <% end %>
+    </div>
+
+
+
+    <!--
+<div class="text-center ">
+<% (0...@album.images.count).each do |image| %>
+  <%= image_tag(@album.thumbnail(image) )%> 
+ <% end %>
+</div>
+-->
+
+
+    <p class="h3 p-3">
+        <strong>Description:</strong>
+        <%= @album.discription %>
+    </p>
+
+    <div class="h4 text-right">
+        <%= link_to 'Edit', edit_album_path(@album) %> |
+        <%= link_to 'Back', albums_path %>
+    </div>
