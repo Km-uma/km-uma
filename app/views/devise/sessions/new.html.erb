@@ -4,8 +4,8 @@
             <!--left side space-->
         </div>
 
-        <div class="col-8 text-center">
-            <div class="container border" style="padding-top:80px">
+        <div class="col-8">
+            <div class="container border bg-primary" style="padding-top:80px">
                 <h2>Sign in</h2>
                 <br>
                 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
@@ -27,7 +27,7 @@
                 <% end %>
 
                 <div class="actions">
-                    <%= f.submit "Log in" %>
+                  <%= f.submit "Log in" %>
                 </div>
                 <% end %>
 <br>
