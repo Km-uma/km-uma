@@ -16,13 +16,20 @@
                     <a class="nav-link " href="# ">Category two</a>
                 </li>
             </ul>
-            <ul class="nav navbar-nav pull-right">
-                <li class="nav-item">
-                    <a class="nav-link" href=" # ">Add Photo</a>
+                     <ul class="navbar-nav ml-auto ">
+                <% unless user_signed_in? %>
+                <li class="">
+                    <a class="nav-link" href="/users/sign_in">Log In</a>
                 </li>
-                <li class="nav-item ">
-                    <a class="nav-link " href=" # ">Add Photo</a>
+                <li class="">
+                    <a class="nav-link" href="/users/sign_up">Sign up</a>
                 </li>
+                <% end %>
+                <% if user_signed_in? %>
+                <li class="">
+                    <%= link_to "SignOut", destroy_user_session_path, :method => 'delete', class: "nav-link" %>
+                </li>
+                <% end %>
             </ul>
         </div>
     </nav>
